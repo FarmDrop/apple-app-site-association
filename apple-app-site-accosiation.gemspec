@@ -29,5 +29,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'rubocop'
   s.add_development_dependency 'rspec', '~> 3.6'
   s.add_development_dependency 'rack-test'
-  s.add_dependency 'sinatra', '~> 2'
+  s.add_dependency 'sinatra', '~> 1.4.8'
 end
