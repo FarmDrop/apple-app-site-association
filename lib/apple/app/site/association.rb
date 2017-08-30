@@ -41,6 +41,8 @@ module Apple
 
         get '/apple-app-site-association' do
           content_type :json
+          cache_control :public, :must_revalidate
+          status 200
           self.class.config.to_json
         end
       end

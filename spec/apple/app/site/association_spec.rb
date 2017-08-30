@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'spec_helper'
+require 'pry'
 
 describe Apple::App::Site::Association do
   describe Apple::App::Site::Association::Config do
@@ -71,6 +72,10 @@ describe Apple::App::Site::Association do
         expect(subject).to be_ok
       end
 
+      it 'should set the cache control header to must-revalidate' do
+        expect(subject.header['Cache-Control']).to eq 'public, must-revalidate'
+      end
+ 
       it 'should return application/json' do
         headers = subject.header
         expect(headers.key?('Content-Type')).to be true
