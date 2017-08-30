@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require 'spec_helper'
-require 'pry'
 
 describe Apple::App::Site::Association do
   describe Apple::App::Site::Association::Config do
