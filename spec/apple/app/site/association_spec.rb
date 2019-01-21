@@ -96,7 +96,6 @@ describe Apple::App::Site::Association do
         body = JSON.parse(json)
         applinks = body['applinks']
         applinks.values.each do |v|
-          expect(v).to be_a Array
           expect(v.empty?).to be true
         end
       end
@@ -104,11 +103,12 @@ describe Apple::App::Site::Association do
       context 'configurable' do
         let(:apps) { [] }
         let(:details) { [{ appID: 'ABCD1234.com.apple.wwdc', paths: '*' }] }
-
+        let(:webcredentials) { { "apps" => ['ABCD1234.com.apple.wwdc'] } }
         before :each do
           app.configure do |c|
             c.apps(*apps)
             c.details(*details)
+            c.webcredentials(webcredentials)
           end
         end
 
@@ -134,6 +134,7 @@ describe Apple::App::Site::Association do
           applinks = body['applinks']
           expect(applinks.key?('apps')).to be true
           expect(applinks.key?('details')).to be true
+          expect(applinks.key?('webcredentials')).to be true
         end
 
         it 'should have configured value' do
@@ -142,8 +143,10 @@ describe Apple::App::Site::Association do
           applinks = body['applinks']
           body_apps = applinks['apps']
           body_details = applinks['details']
+          body_webcredentials = applinks['webcredentials']
           expect(body_apps).to eq(apps)
           expect(body_details).to eq(details.map { |d| d.map { |k, v| [k.to_s, v] }.to_h })
+          expect(body_webcredentials).to eq(webcredentials)
         end
       end
     end
