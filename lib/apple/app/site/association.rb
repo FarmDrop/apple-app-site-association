@@ -11,6 +11,7 @@ module Apple
           def initialize
             @apps = []
             @details = []
+            @webcredentials = {}
           end
 
           def apps(*a)
@@ -21,11 +22,16 @@ module Apple
             @details.push(*d)
           end
 
+          def webcredentials(hash)
+            @webcredentials.merge!(hash)
+          end
+
           def to_json
             {
               applinks: {
                 apps: @apps,
                 details: @details
+                webcredentials: @webcredentials
               }
             }.to_json
           end
