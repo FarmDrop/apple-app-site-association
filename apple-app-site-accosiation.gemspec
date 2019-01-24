@@ -6,7 +6,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 Gem::Specification.new do |s|
   s.name        = 'apple-app-site-association'
-  s.version     = '0.1.2'
+  s.version     = '0.1.3'
   s.authors     = ['toihrk']
   s.email       = ['toihrk@me.com']
 
